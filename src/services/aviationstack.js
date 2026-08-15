@@ -1,88 +1,11 @@
-// const axios = require('axios')
-// const Flight = require('../models/flight.js')
-// const Airport = require('../models/airport.js')
-// const AircraftModel = require('../models/airplane.js')
 
-
-
-// const { URL, URLSearchParams } = require('url');
-
-
-// const syncFlights = async (req,res)=>{
-//     try{
-        
-//         const response=await axios.get('http://api.aviationstack.com/v1/flights?',{
-            
-//             params:{
-//                 access_key:process.env.API_KEY,
-//                 dep_iata:req.query.dep_iata,
-//                 arr_iata:req.query.arr_iata
-            
-                
-//             },
-        
-//         });
-        
-//         const result =response.data.data
-//         console.log('Total flights fetched:', result.length);
-
-     
-//         for(const resu of result){
-            
-//             const originAirport = await Airport.findOne({ code: resu.departure.iata })
-            
-//             const destAirport = await Airport.findOne({ code: resu.arrival.iata })
-
-//             if (!originAirport || !destAirport) {
-//                 console.log('Skipping — airport not found')
-//                 continue
-//             }
-            
-
-//             await Flight.updateOne(
-        
-//         { 
-//             flightNumber: resu.flight.iata,
-            
-//         },
-        
-//         { $set: {
-//             flightNumber: resu.flight.iata,
-//             departure: originAirport._id,        
-//             arrival: destAirport._id,      
-//             departureTime: new Date(resu.departure.scheduled),
-//             arrivalTime: new Date(resu.arrival.scheduled),
-//             status: resu.flight_status,
-//             pricing: { economy: 5000, business: 10000, first: 15000 },
-//             availableSeats: { economy: 50, business: 10, first: 5 },
-//             lastSyncedAt: new Date()
-//         }},
-//         { upsert: true } 
-//         )
-        
-//         }
-//         console.log("flights synced");
-//         res.json({ success: true, message: `Synced ${result.length} flights` })
-        
-//     }
-    
-//     catch(err){
-//         console.log(err.message)
-//         res.status(500).json({ success: false, message: err.message });
-
-//     }
-// }
-
-
-// module.exports = { syncFlights };
 
 
 const axios = require('axios')
 const Flight = require('../models/flight.js')
 const Airport = require('../models/airport.js')
 
-// Core sync logic — plain function, no req/res dependency.
-// Callable from an Express route OR directly from cron.
+
 const runSync = async (dep_iata, arr_iata) => {
     if (!dep_iata || !arr_iata) {
         throw new Error('runSync requires dep_iata and arr_iata')
@@ -161,7 +84,7 @@ const runSync = async (dep_iata, arr_iata) => {
     return { synced, skipped }
 }
 
-// Express route wrapper — used by routes/syncflights.js.
+
 const syncFlights = async (req, res) => {
     try {
         const { dep_iata, arr_iata } = req.query
