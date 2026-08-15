@@ -32,10 +32,7 @@ const cors = require('cors')
 
 require('./src/contollers/crons.js')  // starts the cron job
 
-// const dburi= 'mongodb+srv://annie2:PQRST12345@cluster0.4tlshaj.mongodb.net/?appName=Cluster0';
-// mongoose.connect(dburi)
-//     .then((result)=> console.log("connected"))
-//     .catch((error)=>console.log(error));
+
 const { authenticateJWT } = require('./src/middlewares/auth.js')
 const server = express();
 
