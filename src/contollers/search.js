@@ -26,12 +26,12 @@ const searchFlights = async (req, res) => {
         const flights = await Flight.find({
             departure: departure._id,
             arrival: arrival._id,
-            //date: new Date(date),
+            
             departureTime: {
                 $gte: new Date(date + 'T00:00:00'),
                 $lte: new Date(date + 'T23:59:59')
             },
-            // [`availableSeats.${classes}`]: { $gt: 0 }
+            
             ...(classes && { [`availableSeats.${classes}`]: { $gt: 0 } })
             
 
@@ -45,18 +45,5 @@ const searchFlights = async (req, res) => {
     }
 }
 
-// const seatMap= async(req,res)=>{
-//     try{
-//         await searchFlights();
-//         const { flightid }=req.query.id;
-//         const desired_flight= await Flight.find({
-//             flightNumber:flightid,
-//         })
-//         res.json({sucess:true,seats:desired_flight.availableSeats})
-
-//     } catch(err){
-//         res.status(500).json({sucess:false,message:err.message})
-//     }
-// }
 
 module.exports = { searchFlights }
