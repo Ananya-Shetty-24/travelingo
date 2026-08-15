@@ -1,24 +1,10 @@
-// const axios = require('axios')
-// const Flight = require('../models/flight.js')
-// const Airport = require('../models/airport.js')
-// const AircraftModel = require('../models/airplane.js')
 
-// const { syncFlights } = require('../services/aviationstack');
-// const cron=require('node-cron');
-
-// cron.schedule('0 */8 * * *', () => {
-//     console.log('Syncing flights...')
-//     syncFlights()
-// })
-
-// module.exports = { syncFlights }
 
 const axios = require('axios')
 const Flight = require('../models/flight.js')
 const Airport = require('../models/airport.js')
 
-// Core sync logic — plain function, no req/res dependency.
-// Callable from an Express route OR directly from cron.
+
 const runSync = async (dep_iata, arr_iata) => {
     if (!dep_iata || !arr_iata) {
         throw new Error('runSync requires dep_iata and arr_iata')
@@ -97,7 +83,7 @@ const runSync = async (dep_iata, arr_iata) => {
     return { synced, skipped }
 }
 
-// Express route wrapper — used by routes/syncflights.js.
+
 const syncFlights = async (req, res) => {
     try {
         const { dep_iata, arr_iata } = req.query
