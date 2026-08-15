@@ -6,7 +6,7 @@ const convertINRtoGBP = async (amountInINR) => {
     )
     const rate = response.data.conversion_rate
     const amountInGBP = amountInINR * rate
-    return Math.round(amountInGBP * 100)  // Stripe needs pence, no decimals
+    return Math.round(amountInGBP * 100)  
 }
 
 module.exports = { convertINRtoGBP }
