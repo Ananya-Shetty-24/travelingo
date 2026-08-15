@@ -1,0 +1,36 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --color-runway-900: #0F2231;
+  --color-runway-800: #16324A;
+  --color-runway-700: #1E3F5C;
+  --color-fog-400: #8B93A7;
+  --color-fog-200: #C9D3DE;
+  --color-cloud-50: #F4F6F8;
+  --color-amber-signal: #FFB238;
+  --color-coral-alert: #FF6B4A;
+
+  --font-display: "Space Grotesk", sans-serif;
+  --font-body: "Inter", sans-serif;
+  --font-mono: "IBM Plex Mono", monospace;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background-color: var(--color-runway-900);
+  color: var(--color-cloud-50);
+  font-family: var(--font-body);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

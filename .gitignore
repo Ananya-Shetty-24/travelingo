@@ -1,0 +1,36 @@
+# ---- Environment files (backend + frontend) ----
+.env
+.env.local
+.env.*.local
+flight-booking-frontend/.env
+flight-booking-frontend/.env.local
+flight-booking-frontend/.env.*.local
+
+# ---- Dependencies ----
+node_modules/
+flight-booking-frontend/node_modules/
+
+# ---- Build output ----
+dist/
+build/
+flight-booking-frontend/dist/
+flight-booking-frontend/build/
+
+# ---- Logs ----
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# ---- Editor / OS junk ----
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# ---- Vite ----
+flight-booking-frontend/.vite/
+
+# ---- Misc ----
+*.local
+coverage/
